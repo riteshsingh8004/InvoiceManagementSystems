@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en" xmlns:th="http//www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    
+    <title>home  page</title>
+  </head>
+  <body>
+	  <section>
+		<div class="container">
+			<div class="row">
+			<div class="col-md-8 offset-md-2">
+				<div class="my-card mt-1">
+					
+					<div class="container text-center">
+    <img style="width: 80px;" src="/img/edit.png" alt="Edit" />
+</div>
+
+<script type="text/javascript">
+    
+    function showSuccessMessage() {
+        var successMessage = document.querySelector('.alert-success');
+        if (successMessage) {
+            setTimeout(function() {
+                successMessage.style.display = 'none';
+            }, 5000);
+        }
+    }
+
+    window.onload = function() {
+        showSuccessMessage();
+    };
+    
+     // Call the function when the user interacts with the page
+    document.addEventListener('click', function() {
+        showSuccessMessage();
+    });
+</script>
+
+					
+				<div class="container text-center">
+				<img style="width:80px;" src="#" th:src="@{../img/edit.png}" alt="" />	
+				</div>
+					<h1 class="text-center">Update your Invoice Here!!</h1>
+				<form  action="#" th:action="@{/invoices/do_update}" method="post" th:object="${invoice}">
+                      <input type="hidden" name="id" th:value="${invoice.id}" />
+				 
+				 <!-- name -->
+				 <div class="form-group">
+                     <label for="name_field">Name</label>
+                     <input name="name" type="text" class="form-control" 
+                    th:classappend="${#fields.hasErrors('name') ? 'is-invalid':''}" id="name_field" aria-describedby="emailHelp" placeholder="Enter Name Here" 
+                     th:value="${invoice.name}"
+                     />
+                   <!--   field if date in not field -->
+					<div class="invalid-feedback" th:each="e :${#fields.errors('name')}" th:text="${e}">
+								</div>
+                     
+                    </div>	
+                    
+                    <!-- invoceNumber -->
+                    <div class="form-group">
+                     <label for="invoiceNumber_field">Invoice Number</label>
+                     <input name="invoiceNumber" type="text" class="form-control" th:classappend="${#fields.hasErrors('invoiceNumber')? 'is-invalid':''}" id="invoiceNumber_field" aria-describedby="emailHelp" placeholder="Enter Name Here" 
+                      th:value="${invoice.invoiceNumber}"
+                     />
+                     <!--   field if date in not field -->
+					<div class="invalid-feedback" th:each="e :${#fields.errors('invoiceNumber')}" th:text="${e}">
+						
+					</div>
+                    </div>	
+                    
+                    <!-- date -->
+					<div class="form-group">
+						<label for="date_field">Date</label>
+						<input name="date" type="date" class="form-control" th:classappend="${#fields.hasErrors('date')? 'is-invalid':''}" id="date_field" aria-describedby="emailHelp" placeholder="Enter Date Here"
+						
+						  th:value="${invoice.date}" />
+						  <!--   field if date in not field -->
+					<div class="invalid-feedback" th:each="e :${#fields.errors('date')}" th:text="${e}">
+						
+					</div>
+					</div>
+					
+					<!-- amount -->
+					<div class="form-group">
+						<label for="amount_field">Amount</label>
+						<input name="amount" type="number" class="form-control" th:classappend="${#fields.hasErrors('amount')? 'is-invalid':''}" id="amount_field" aria-describedby="amountHelp"
+							placeholder="Enter Amount Here" step="0.01" 
+					 th:value="${invoice.amount}"/>
+					 <!--   field if date in not field -->
+					<div class="invalid-feedback" th:each="e :${#fields.errors('amount')}" th:text="${e}">
+						
+					</div>
+					</div>
+                    
+                    <!-- customer detail -->
+                    <div class="form-group">
+						<label for="phoneNumber_field">Phone Number</label>
+						<input name="customerDetails.phoneNumber" type="text" class="form-control"
+							th:classappend="${#fields.hasErrors('customerDetails.phoneNumber') ? 'is-invalid':''}" id="phoneNumber_field"
+							placeholder="Enter Phone Number Here" th:value="${invoice.customerDetails.phoneNumber}"  />
+						<div class="invalid-feedback" th:each="e :${#fields.errors('customerDetails.phoneNumber')}" th:text="${e}"></div>
+					</div>
+
+                        <div class="form-group">
+                            <label for="address_field">Address</label>
+                            <input name="customerDetails.address" type="text" class="form-control" th:classappend="${#fields.hasErrors('customerDetails.address') ? 'is-invalid':''}" id="address_field" placeholder="Enter Address Here" th:value="${invoice.customerDetails.address}" />
+                            <div class="invalid-feedback" th:each="e :${#fields.errors('customerDetails.address')}" th:text="${e}"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="city_field">City</label>
+                            <input name="customerDetails.city" type="text" class="form-control" th:classappend="${#fields.hasErrors('customerDetails.city') ? 'is-invalid':''}" id="city_field" placeholder="Enter City Here" th:value="${invoice.customerDetails.city}" />
+                            <div class="invalid-feedback" th:each="e :${#fields.errors('customerDetails.city')}" th:text="${e}"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="country_field">Country</label>
+                            <input name="customerDetails.country" type="text" class="form-control" th:classappend="${#fields.hasErrors('customerDetails.country') ? 'is-invalid':''}" id="country_field" placeholder="Enter Country Here" th:value="${invoice.customerDetails.country}" />
+                            <div class="invalid-feedback" th:each="e :${#fields.errors('customerDetails.country')}" th:text="${e}"></div>
+                        </div>
+                       
+					<!--end customer detail -->
+					
+					
+					<div class="container text-center">
+						
+						<button type="submit" class="btn bg-primary text-white">
+							Update Invoice
+						</button>
+						&nbsp;&nbsp;
+						<button type="reset" class="btn btn-warning text-white">
+						    Reset
+						</button>
+					</div>
+					
+				</form>
+					
+				</div>
+				
+			</div>	
+				
+			</div>
+			
+		</div>
+		 
+	  </section>
+    
+  </body>
+</html>	
