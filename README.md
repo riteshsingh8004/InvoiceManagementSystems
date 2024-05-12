@@ -1,4 +1,4 @@
-                                                                    Invoice Management System
+                                                   Invoice Management System
 The Invoice Management System is a web-based application built using Spring Boot that allows users to manage invoices and customer details efficiently. This application provides functionalities for creating, viewing, updating, and deleting invoices, along with pagination support for browsing through a large number of invoices.
 
 Features
